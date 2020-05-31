@@ -6,9 +6,9 @@ func main() {
 	l1 := &ListNode{
 		Val: 1,
 		Next: &ListNode{
-			Val:2,
+			Val: 2,
 			Next: &ListNode{
-				Val:4,
+				Val:  4,
 				Next: nil,
 			},
 		},
@@ -16,9 +16,9 @@ func main() {
 	l2 := &ListNode{
 		Val: 1,
 		Next: &ListNode{
-			Val:3,
+			Val: 3,
 			Next: &ListNode{
-				Val:4,
+				Val:  4,
 				Next: nil,
 			},
 		},
@@ -43,23 +43,21 @@ func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
 	t := ans
 	for l1 != nil && l2 != nil {
 		if l1.Val >= l2.Val {
-			(*t).Val = l2.Val
-			(*t).Next = &ListNode{}
+			t.Next = l2
 			l2 = l2.Next
 		} else {
-			(*t).Val = l1.Val
-			(*t).Next = &ListNode{}
+			t.Next = l1
 			l1 = l1.Next
 		}
-		*t = (*t).Next
-		fmt.Println(ans)
+		t = t.Next
 	}
 
 	if l1 != nil {
-		t = l1
+		t.Next = l1
 	}
 	if l2 != nil {
-		t = l2
+		t.Next = l2
 	}
-	return ans
+
+	return ans.Next
 }
